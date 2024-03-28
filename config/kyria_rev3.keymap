@@ -5,10 +5,8 @@
  */
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/rgb.h>
-#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/keys.h>
 
 &led_strip {
     chain-length = <6>;
@@ -19,7 +17,7 @@
 / {
     chosen {
       zmk,backlight = &led_strip;
-    };
+    }
 
     keymap {
         compatible = "zmk,keymap";
