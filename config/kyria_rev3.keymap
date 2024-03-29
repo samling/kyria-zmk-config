@@ -20,7 +20,7 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        layer_Base {
             // ---------------------------------------------------------------------------------------------------------------------------------
             // |  ESC  |  Q  |  W  |  E   |  R   |  T   |                                          |  Y   |  U    |  I    |  O   |   P   |   \  |
             // |  TAB  |  A  |  S  |  D   |  F   |  G   |                                          |  H   |  J    |  K    |  L   |   ;   |   '  |
@@ -30,12 +30,39 @@
             bindings = <
 &kp TAB           &kp Q  &kp W  &kp E     &kp R         &kp T                                                               &kp Y      &kp U             &kp I              &kp O    &kp P     &kp MINUS
 &mt LCTRL ESCAPE  &kp A  &kp S  &kp D     &kp F         &kp G                                                               &kp H      &kp J             &kp K              &kp L    &kp SEMI  &kp SQT
-&kp LSHFT         &kp Z  &kp X  &kp C     &kp V         &kp B      &none           &kp LC(W)  &kp LC(LS(T))  &none          &kp N      &kp M             &kp COMMA          &kp DOT  &kp FSLH  &kp BACKSLASH
+&kp LSHFT         &kp Z  &kp X  &kp C     &kp V         &kp B      &mo 1           &kp LC(W)  &kp LC(LS(T))  &mo 2          &kp N      &kp M             &kp COMMA          &kp DOT  &kp FSLH  &kp BACKSLASH
                                 &kp LGUI  &kp LEFT_ALT  &kp ENTER  &kp LEFT_SHIFT  &kp LC(A)  &kp LC(A)      &kp BACKSPACE  &kp SPACE  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
             >;
         };
 
-        function_layer {
+        layer_Numpad {
+            bindings = <
+&kp TAB  &kp N1  &kp N2  &kp N3         &kp N4         &kp N5                                               &kp N6           &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp N0           &kp KP_MINUS
+&trans   &trans  &trans  &trans         &trans         &trans                                               &trans           &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_MULTIPLY  &kp KP_PLUS
+&trans   &trans  &trans  &kp LC(LS(C))  &kp LC(LS(V))  &trans        &trans  &trans  &trans  &trans         &trans           &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &trans           &kp KP_ENTER
+                         &trans         &trans         &kp KP_ENTER  &trans  &trans  &trans  &kp BACKSPACE  &kp KP_NUMBER_0  &kp KP_DOT       &kp KP_DOT
+            >;
+        };
+
+        layer_Symbols {
+            bindings = <
+&kp GRAVE  &kp GRAVE  &kp LEFT_BRACE  &kp RIGHT_BRACE   &kp AT      &kp STAR                                               &kp EXCL        &kp COLON       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMI   &trans
+&trans     &kp CARET  &kp EQUAL       &kp HASH          &kp DOLLAR  &kp UNDER                                              &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW          &kp RIGHT_ARROW        &kp TILDE  &trans
+&trans     &kp MINUS  &kp LESS_THAN   &kp GREATER_THAN  &kp PIPE    &kp AMPERSAND  &kp SLASH  &trans       &trans  &to 0   &kp PERCENT     &kp PLUS        &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp SLASH  &trans
+                                      &trans            &trans      &kp BACKSLASH  &kp COLON  &kp PERCENT  &trans  &trans  &trans          &trans          &trans
+            >;
+        };
+
+        layer_Shift {
+            bindings = <
+&kp GRAVE  &kp EXCL  &kp AT  &kp HASH  &kp DOLLAR  &kp PERCENT                                  &kp CARET  &kp AMPERSAND  &kp ASTRK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp BACKSLASH
+&trans     &trans    &trans  &trans    &trans      &trans                                       &trans     &trans         &trans     &trans                &trans                 &trans
+&trans     &trans    &trans  &trans    &trans      &trans       &trans  &trans  &trans  &trans  &trans     &trans         &trans     &trans                &trans                 &trans
+                             &trans    &trans      &trans       &trans  &trans  &trans  &trans  &trans     &trans         &trans
+            >;
+        };
+
+        layer_Magic {
             // ---------------------------------------------------------------------------------------------------------------------------------
             // |       |      |BT_CLR|BTSEL0|BTSEL1|BTSEL2|                                         |      |      |      |      |      |      |
             // |       |      |      |BTSEL3|BTSEL4|      |                                         |      |      |      |      |      |      |
@@ -43,13 +70,11 @@
             //                       |      |      |      |      |      |      |      |      |      |      |      |      |
 
             bindings = <
-&trans  &trans  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2                                  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans      &bt BT_SEL 3  &bt BT_SEL 4  &trans                                        &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans      &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                            &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&bt BT_CLR      &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4                                  &trans  &trans  &trans  &trans  &trans  &trans
+&trans          &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                                   &trans  &trans  &trans  &trans  &trans  &trans
+&bt BT_CLR_ALL  &trans         &trans         &trans         &trans         &trans         &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &to 0
+                                              &trans         &trans         &trans         &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
-
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
     };
 };
